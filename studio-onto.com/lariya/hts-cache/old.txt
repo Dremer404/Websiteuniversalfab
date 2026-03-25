@@ -1,0 +1,5 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+08:43:47	24/24	---M--	200	added ('OK')	text/plain	etag:%22243b03ecba82dde9612cd5163145a86d%22	https://layrid.tomoyaokada.com/robots.txt		(from )
+08:43:48	38072/38072	---MCZ	200	added ('OK')	text/html	etag:W/%2295e19bf2680a4a57156a9db40eba92ae%22	https://layrid.tomoyaokada.com/	C:/Mes%20Sites%20Web/lariya/layrid.tomoyaokada.com/index.html	(from )
+08:43:49	63612/63612	---M--	200	added ('OK')	font/woff	etag:%22d5fac4d1e21498e038bdc8b3003ea8a6%22	https://layrid.tomoyaokada.com/_nuxt/ppneuemontreal-book.DFwIyGw9.woff	C:/Mes%20Sites%20Web/lariya/layrid.tomoyaokada.com/_nuxt/ppneuemontreal-book.DFwIyGw9.woff	(from https://layrid.tomoyaokada.com/)
+08:43:50	65464/65464	---M--	200	added ('OK')	font/woff	etag:%2290f8314654dbec690042c30210c2def3%22	https://layrid.tomoyaokada.com/_nuxt/ppneuemontreal-medium.B8CHqZdO.woff	C:/Mes%20Sites%20Web/lariya/layrid.tomoyaokada.com/_nuxt/ppneuemontreal-medium.B8CHqZdO.html	(from https://layrid.tomoyaokada.com/)

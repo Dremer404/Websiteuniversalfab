@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RX 3  Remorquable | Universal Fab</title>
+  <meta name="description" content="18 projects focused on scaling and strategic development.">
+
+  <!-- Styles Lariya (inline, préservés depuis Nuxt) -->
+  <style>
+    @font-face { font-family: 'PP Neue Montreal Book'; src: url('../_nuxt/ppneuemontreal-book.DFwIyGw9.woff') format('woff'); }
+    @font-face { font-family: 'PP Neue Montreal Medium'; src: url('../_nuxt/ppneuemontreal-medium.B8CHqZdO.woff') format('woff'); }
+
+    /* Reset */
+    *{box-sizing:border-box}:after,:before{box-sizing:inherit}html{line-height:1.15;-webkit-tap-highlight-color:transparent}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;line-height:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}a{background-color:transparent;color:inherit;text-decoration:none}b,strong{font-weight:bolder}button,input,select,textarea{-webkit-appearance:none;appearance:none;background:transparent;border:0;border-radius:0;color:inherit;font:inherit;margin:0;outline:0;padding:0}button{cursor:pointer}table{border-collapse:collapse;border-spacing:0}[hidden]{display:none}
+
+    :root {
+      --color-black: #111;
+      --color-white: #dcdcdc;
+      --border-color: #3f3f3f;
+      --background-color: #080808;
+      --app-grid-padding: 30px;
+    }
+    @media (max-width:767px) { :root { --app-grid-padding: 20px; } }
+
+    ::selection { background: var(--color-white); color: #000; }
+    html, body { height: 100svh; overflow-x: clip; background: var(--background-color); color: var(--color-white); font-family: 'PP Neue Montreal Book', sans-serif; -webkit-font-smoothing: antialiased; scrollbar-width: none; -ms-overflow-style: none; }
+    body::-webkit-scrollbar { display: none; }
+    .u-md { font-family: 'PP Neue Montreal Medium', sans-serif; }
+    .u-ja { font-family: 'Noto Sans JP', sans-serif; }
+    .u-sr { height:1px;overflow:hidden;padding:0;position:absolute;width:1px;clip:rect(1px,1px,1px,1px); }
+    .contents-main { min-height: 100svh; position: relative; width: 100%; }
+
+    /* Header */
+    .header { left:0; opacity:0; pointer-events:none; position:fixed; top:20px; width:100%; z-index:1000; }
+    .header__inner { align-items:center; display:flex; justify-content:space-between; padding-inline:30px; }
+    .header__logo { display:block; transition:opacity .4s ease; }
+    @media (hover:hover) { .header__logo:hover { opacity:.5; } }
+    .header__logo span { color:var(--color-white); font-size:20px; }
+    .header__menu-button { background:none; border:none; cursor:pointer; height:30px; position:relative; width:30px; }
+    .header__menu-line { background:var(--color-white); display:block; height:1px; left:0; position:absolute; transition:all .4s ease; width:100%; }
+    .header__menu-line.top { top:13px; }
+    .header__menu-line.bottom { top:17px; }
+    .header__menu-button.is-open .header__menu-line.top { top:15px; transform:rotate(30deg); }
+    .header__menu-button.is-open .header__menu-line.bottom { top:15px; transform:rotate(-30deg); }
+    .universal-fab-button { background:transparent; border:1px solid rgba(220,220,220,0.4); border-radius:2px; color:var(--color-white); font-size:11px; letter-spacing:0.05em; padding:8px 14px; text-transform:uppercase; transition:background .3s ease, color .3s ease; }
+    @media (hover:hover) { .universal-fab-button:hover { background:var(--color-white); color:#111; } }
+
+    /* Menu */
+    .menu { background:#000; clip-path:inset(0 0 100% 0); height:234px; position:fixed; right:15px; top:12px; width:202px; z-index:99; }
+    .menu.is-open { clip-path:inset(0 0 0% 0); }
+    .menu__ul { padding:0 15px; position:relative; top:55px; }
+    .menu__link { border-bottom:1px solid #1b1b1b; display:flex; justify-content:space-between; padding-block:4px; }
+    @media (hover:hover) { .menu__link:hover .menu__li-text { opacity:.5; } }
+    .menu__li-text { color:var(--color-white); display:block; font-size:15px; overflow:hidden; text-transform:uppercase; transition:opacity .4s ease; }
+    .menu__li-text-inner { display:inline-block; transform:translateY(-100%); }
+    .menu__li-image { background:#333; clip-path:inset(100%); display:block; height:20px; width:20px; overflow:hidden; }
+    .menu__li-image img { height:100%; object-fit:cover; width:100%; }
+
+    /* Single MV */
+    .single { width:100%; }
+    .single-mv { height:100svh; position:relative; width:100%; }
+    .single-mv__image { background:#ccc; height:79%; margin-bottom:30px; overflow:hidden; position:relative; clip-path:inset(100% 0% 0% 0%); width:100%; }
+    @media (max-width:767px) { .single-mv__image { height:75%; margin-bottom:20px; } }
+    .single-mv__image-cover { height:100svh; left:0; position:absolute; top:0; width:100%; }
+    .single-mv__image-cover img { height:100%; object-fit:cover; width:100%; }
+    .single-mv__contents { display:grid; grid-template-columns:repeat(12,1fr); opacity:0; padding-inline:var(--app-grid-padding); width:100%; }
+    @media (max-width:767px) { .single-mv__contents { display:flex; flex-wrap:wrap; gap:10px; padding-inline:20px; } }
+    .single-mv__contents-titles { grid-column:1/span 3; }
+    .single-mv__contents-group { display:flex; flex-direction:column; gap:10px; }
+    @media (max-width:767px) { .single-mv__contents-group { align-items:flex-end; flex-direction:row; } }
+    .single-mv__contents-group h1 { color:var(--color-white); font-size:40px; }
+    @media (max-width:767px) { .single-mv__contents-group h1 { font-size:24px; } }
+    .single-mv__contents-group p { color:var(--color-white); font-size:16px; font-weight:600; }
+    .single-mv__en { grid-column:4/span 3; }
+    .single-mv__en p { color:var(--color-white); font-size:18px; line-height:1; }
+    @media (max-width:767px) { .single-mv__en p { font-size:14px; } }
+    .single-mv__ja { grid-column:8/span 3; }
+    .single-mv__ja p { color:var(--color-white); font-size:13px; font-weight:600; line-height:1.7; }
+    .single-mv__scroll { color:var(--color-white); font-size:14px; grid-column:11/span 3; line-height:1; text-align:right; }
+
+    /* Single Contents */
+    .single-contents { display:grid; grid-template-columns:repeat(12,1fr); padding-inline:var(--app-grid-padding); padding-bottom:100px; padding-top:100px; width:100%; }
+    @media (max-width:767px) { .single-contents { display:flex; flex-direction:column; gap:40px; padding-block:80px 50px; padding-inline:20px; } }
+    .single-contents__head { grid-column:1/span 4; }
+    .single-contents__head-video { background:#333; left:0; padding-top:56%; position:sticky; top:120px; overflow:hidden; position:relative; }
+    .single-contents__head-video video { height:100%; left:0; object-fit:cover; position:absolute; top:0; width:100%; }
+    .single-contents__head p { align-items:center; color:var(--color-white); display:flex; font-size:14px; gap:10px; position:absolute; top:-28px; }
+    .single-contents__head p::before { background:var(--color-white); content:""; height:6px; width:6px; }
+    .single-contents__lists { display:flex; flex-direction:column; grid-column:6/span 8; }
+    .single-contents__link { border-bottom:1px solid var(--color-white); display:grid; grid-template-columns:repeat(12,1fr); padding-block:16px; transition:opacity .2s ease; }
+    @media (hover:hover) { .single-contents__link:hover .single-contents__link-category,
+                            .single-contents__link:hover .single-contents__link-date,
+                            .single-contents__link:hover .single-contents__link-title { opacity:.5; } }
+    .single-contents__link-title { color:var(--color-white); font-size:18px; grid-column:1/span 5; transition:opacity .4s ease; }
+    @media (max-width:767px) { .single-contents__link-title { font-size:14px; } }
+    .single-contents__link-category { color:var(--color-white); font-size:14px; grid-column:10/span 2; transition:opacity .4s ease; }
+    .single-contents__link-date { color:var(--color-white); font-size:14px; grid-column:12/span 2; text-align:right; transition:opacity .4s ease; }
+
+    /* Single Next */
+    .single-next { height:3000px; position:relative; width:100%; }
+    .single-next__area { height:100svh; left:0; overflow:hidden; position:sticky; top:0; width:100%; }
+    .single-next__image { height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%; z-index:0; }
+    .single-next__image img { height:100%; object-fit:cover; width:100%; }
+    .single-next__cover { left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); z-index:1; }
+    .single-next__title { color:var(--color-white); font-size:24px; margin-bottom:16px; overflow:hidden; text-align:center; text-transform:uppercase; }
+    .single-next__title span { display:block; }
+    .single-next__progress { background:#7e7b7b; height:1px; margin:auto; position:relative; width:180px; }
+    .single-next__progress-inner { background:var(--color-white); height:1px; left:0; position:absolute; top:0; width:0; }
+  
+    /* RX Product Styles */
+    .rx-hero { padding: 60px var(--app-grid-padding) 40px; background: var(--background-color); }
+    .rx-hero__badge { color: var(--color-white); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+    .rx-hero__title { color: var(--color-white); font-size: clamp(32px, 6vw, 64px); font-family: "PP Neue Montreal Medium", sans-serif; line-height: 1; margin-bottom: 8px; }
+    .rx-hero__subtitle { color: var(--color-white); opacity: 0.6; font-size: 14px; margin-bottom: 40px; }
+    .rx-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 0; }
+    .rx-spec-item { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 16px; }
+    .rx-spec-item label { color: var(--color-white); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; display: block; margin-bottom: 6px; }
+    .rx-spec-item span { color: var(--color-white); font-size: 15px; font-family: "PP Neue Montreal Medium", sans-serif; display: block; }
+    .rx-config { padding: 60px var(--app-grid-padding); }
+    .rx-config__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .rx-config__title { color: var(--color-white); font-size: 22px; }
+    .rx-export-btn { display: flex; align-items: center; gap: 8px; background: var(--color-white); color: #111; border: none; padding: 12px 20px; font-size: 12px; font-family: "PP Neue Montreal Medium", sans-serif; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: background 0.3s, color 0.3s; }
+    .rx-export-btn:hover { background: #111; color: var(--color-white); outline: 1px solid var(--color-white); }
+    .rx-table-group { margin-bottom: 40px; }
+    .rx-table-group__title { color: var(--color-white); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+    .rx-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .rx-table th { background: rgba(255,255,255,0.08); color: var(--color-white); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    .rx-table td { color: var(--color-white); padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: middle; }
+    .rx-table tr:hover td { background: rgba(255,255,255,0.03); }
+    .rx-check { display: inline-flex; align-items: center; cursor: pointer; }
+    .rx-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .rx-check span { display: inline-block; width: 18px; height: 18px; border: 1px solid rgba(220,220,220,0.4); background: transparent; position: relative; transition: background 0.2s, border-color 0.2s; }
+    .rx-check input:checked + span { background: var(--color-white); border-color: var(--color-white); }
+    .rx-check input:checked + span::after { content: ""; position: absolute; left: 5px; top: 2px; width: 6px; height: 10px; border: 2px solid #111; border-top: none; border-left: none; transform: rotate(45deg); }
+    .rx-base { color: var(--color-white); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; }
+    .rx-avenir { text-align: center; padding: 80px 30px; }
+    .rx-avenir__icon { font-size: 48px; margin-bottom: 20px; }
+    .rx-avenir__title { color: var(--color-white); font-size: 32px; font-family: "PP Neue Montreal Medium", sans-serif; margin-bottom: 16px; }
+    .rx-avenir__text { color: var(--color-white); opacity: 0.6; font-size: 15px; max-width: 400px; margin: 0 auto 30px; line-height: 1.6; }
+    .rx-avenir__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .rx-avenir__card { background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); padding: 24px; text-align: left; }
+    .rx-avenir__card-title { color: var(--color-white); font-size: 14px; font-family: "PP Neue Montreal Medium", sans-serif; margin-bottom: 8px; }
+    .rx-avenir__card-text { color: var(--color-white); opacity: 0.5; font-size: 12px; line-height: 1.5; }
+    @media print { .rx-export-btn { display: none !important; } }
+</style>
+
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../_nuxt/entry.DO7avDX8.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Scripts -->
+  <script defer src="../../js/lariya-subpage-init.js"></script>
+  <script defer src="../../js/shared-header.js"></script>
+<!-- <script defer src="/lariya-section/js/lariya-transitions-DISABLED.js"></script> -->
+</head>
+<body data-barba="wrapper">
+
+  <!-- ====== HEADER PERSISTANT (hors container Barba) ====== -->
+  <header class="header" id="lariya-header" style="opacity:0; pointer-events:none;">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo u-md">
+        <span>Universal Fab</span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- Botton HOME / Nos Produits géré par shared-header.js -->
+        <a href="../../index.html" id="section-toggle" style="color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; cursor: pointer; text-decoration: none;">
+          <span id="section-toggle-text">HOME</span>
+        </a>
+
+        <!-- Menu burger Lariya -->
+        <button id="menu-btn" class="header__menu-button" aria-label="menu open">
+          <span class="header__menu-line top"></span>
+          <span class="header__menu-line bottom"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU -->
+  <nav class="menu" id="site-menu" aria-hidden="true">
+    <div class="menu__contents">
+      <ul class="menu__ul u-md">
+        <li class="menu__li">
+          <a href="index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 3 Remorquable</span></span>
+            <span class="menu__li-image"><img src="../images/RX 3 REMORQUE.jpeg" alt="creative"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../exploration/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 2 Thermique</span></span>
+            <span class="menu__li-image"><img src="../images/RX 3 REMORQUE.jpeg" alt="exploration"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../growth/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 3 Remorquable</span></span>
+            <span class="menu__li-image"><img src="../images/RX 3 REMORQUE.jpeg" alt="growth"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../expression/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 4 Statique</span></span>
+            <span class="menu__li-image"><img src="../images/RX 3 REMORQUE.jpeg" alt="expression"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../playfulness/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">A Venir</span></span>
+            <span class="menu__li-image"><img src="../images/RX 3 REMORQUE.jpeg" alt="playfulness"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="__container">
+    <main class="contents-main" data-container="creative">
+      <div class="single">
+
+        <!-- Hero image -->
+        <section class="single-mv">
+          <div class="single-mv__image">
+            <div class="single-mv__image-cover">
+              <picture>
+                <source srcset="../images/RX 3 REMORQUE.jpeg" media="(max-width: 767px)">
+                <img src="../images/RX 3 REMORQUE.jpeg" alt="Creative section">
+              </picture>
+            </div>
+          </div>
+          <div class="single-mv__contents">
+            <div class="single-mv__contents-titles">
+              <hgroup class="single-mv__contents-group u-md">
+                <h1>RX 3</h1>
+                <p class="u-ja">牽引式</p>
+              </hgroup>
+            </div>
+            <div class="single-mv__en">
+              <p class="u-md">The most versatile model  towable configuration with hybrid autonomy, electric and thermal combined.</p>
+            </div>
+            <div class="single-mv__ja">
+              <p>最も多用途なモデル  ハイブリッド駆動の牽引式フードトラック</p>
+            </div>
+            <p class="single-mv__scroll u-md">ScrollDown</p>
+          </div>
+        </section>
+
+        
+        <!-- Spécifications RX -->
+        <section class="rx-hero">
+          <p class="rx-hero__badge">Modèle remorquable  Série RX</p>
+          <h2 class="rx-hero__title u-md">RX 3  Remorquable</h2>
+          <p class="rx-hero__subtitle">The most versatile model  towable configuration with hybrid autonomy, electric and thermal combined.</p>
+          <div class="rx-specs">
+            <div class="rx-spec-item"><label>Type de véhicule</label><span>Food truck</span></div>
+            <div class="rx-spec-item"><label>Longueur</label><span>296,13 cm</span></div>
+            <div class="rx-spec-item"><label>Largeur</label><span>170 cm</span></div>
+            <div class="rx-spec-item"><label>Hauteur</label><span>243,18 cm</span></div>
+            <div class="rx-spec-item"><label>Poids</label><span>0,6 t (variable)</span></div>
+            <div class="rx-spec-item"><label>Motorisation</label><span>Thermique + Électrique / Remorquage</span></div>
+            <div class="rx-spec-item"><label>Autonomie batterie</label><span>5 km / pack</span></div>
+            <div class="rx-spec-item"><label>Autonomie essence</label><span>50 km plein</span></div>
+            <div class="rx-spec-item"><label>Vitesse max</label><span>50 km/h</span></div>
+          </div>
+        </section>
+
+        <!-- Configuration -->
+        <!-- CONFIGURATION TABLES -->
+        <section class="rx-config" id="rx-config">
+          <div class="rx-config__header">
+            <h2 class="rx-config__title u-md">Configuration &amp; Équipements</h2>
+            <button class="rx-export-btn" onclick="exportToPDF()" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+              Exporter en PDF
+            </button>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Aménagement intérieur</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Habillage inox (OPTION)</td><td>Facilite le nettoyage et améliore l'hygiène.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>2</td><td>Habillage PVC, fer et panneaux plastique</td><td>Solution plus économique  configuration de base.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>3</td><td>Éclairage intérieur LED (couleurs)</td><td>Améliore la visibilité et l'ambiance.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>4</td><td>Système de pompe d'eau intégré (OPTION)</td><td>Permet d'alimenter l'évier en eau courante.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>5</td><td>Réservoir d'eau supplémentaire (OPTION)</td><td>Augmente la capacité pour une autonomie prolongée.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>6</td><td>Autre porte d'accès (OPTION)</td><td>Améliore les déplacements à l'intérieur.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Équipement de base</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Extracteur d'air chaud</td><td>Évacue la chaleur et améliore la ventilation.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>2</td><td>Ventilateur de rafraîchissement (OPTION)</td><td>Réduit la température pour le confort des employés.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>3</td><td>Armoire de travail fer/plastique (OPTION)</td><td>Rangement sécurisé pour équipements et ingrédients.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>4</td><td>Plateau de travail en bois (OPTION)</td><td>Surface de préparation des aliments.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>5</td><td>Comptoir de rangement extérieur (OPTION)</td><td>Espace supplémentaire pour stocker du matériel.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>6</td><td>Panneau publicitaire personnalisé (OPTION)</td><td>Améliore la visibilité du food truck.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Zone de service</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Comptoir de service avec ouverture (OPTION)</td><td>Point de contact avec les clients.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>2</td><td>Tiroir-caisse sécurisé (OPTION)</td><td>Protection contre le vol et organisation des paiements.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>3</td><td>Système de paiement par carte (OPTION)</td><td>Facilite les paiements sans espèces.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>4</td><td>Tableau d'affichage numérique (OPTION)</td><td>Affichage moderne et attractif des plats disponibles.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Systèmes et utilitaires</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Générateur électrique (OPTION)</td><td>Fournit de l'électricité en autonomie.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>2</td><td>Batteries solaires + onduleur (OPTION)</td><td>Alternative écologique pour l'alimentation électrique.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>3</td><td>Panneaux solaires intégrés (OPTION)</td><td>Réduit la dépendance aux générateurs.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>4</td><td>Batterie auxiliaire (OPTION)</td><td>Augmente l'autonomie énergétique.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>5</td><td>Prise de branchement secteur 220V (OPTION)</td><td>Permet d'alimenter le food truck stationné.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Cuisine équipée  Zone de préparation</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Plan de travail acier inoxydable ou plastique</td><td>Surface hygiénique et résistante pour la préparation.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>2</td><td>Rangements multiples pour ustensiles (OPTION)</td><td>Optimisation de l'espace de travail.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>3</td><td>Tablette rabattable service rapide (OPTION)</td><td>Facilité d'organisation et gain de place.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>4</td><td>Armoire produits secs (OPTION)</td><td>Stockage sécurisé des ingrédients.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Sécurité et conformité</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Extincteur ABC (2 kg)</td><td>Protection contre les incendies.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>2</td><td>Trousse de premiers secours</td><td>Prise en charge rapide des blessures.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>3</td><td>Signalisation de sécurité et sortie de secours</td><td>Respect des normes de sécurité.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>4</td><td>Certificat de conformité alimentaire (OPTION)</td><td>Obligatoire pour exercer légalement.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>5</td><td>Agrément sanitaire (OPTION)</td><td>Attestation officielle de conformité hygiène.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>6</td><td>Assurance responsabilité civile (OPTION)</td><td>Couvre les risques liés à l'activité.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rx-table-group">
+            <h3 class="rx-table-group__title">Fonctionnalités supplémentaires</h3>
+            <table class="rx-table">
+              <thead><tr><th>#</th><th>Élément</th><th>Description</th><th>Choix</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Système audio ambiance musicale</td><td>Améliore l'expérience client.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>2</td><td>Bluetooth intégré</td><td>Permet de connecter des appareils audio facilement.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>3</td><td>WiFi intégré (OPTION)</td><td>Gestion des commandes ou connexion clients.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>4</td><td>Caméras de surveillance à distance</td><td>Sécurise le food truck contre les vols.</td><td><span class="rx-base">Base</span></td></tr>
+                <tr><td>5</td><td>Habillage extérieur personnalisable (OPTION)</td><td>Crée une identité visuelle unique.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>6</td><td>Menu digital interactif (OPTION)</td><td>Modernise la prise de commande.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+                <tr><td>7</td><td>Espace barbecue à l'arrière (OPTION)</td><td>Option de cuisson supplémentaire.</td><td><label class="rx-check"><input type="checkbox"><span></span></label></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <script>
+        function exportToPDF() {
+  var title = document.querySelector('h1') ? document.querySelector('h1').textContent : 'Configuration';
+  
+  // Grab the image for the PDF header
+  var imgEl = document.querySelector('.single-mv__image-cover img');
+  var imgSrc = imgEl ? imgEl.src : '';
+
+  // Get specs
+  var specsContent = document.querySelector('.rx-specs') ? document.querySelector('.rx-specs').outerHTML : '';
+  
+  // Clone config to manipulate safely without affecting the real DOM
+  var configClone = document.querySelector('.rx-config').cloneNode(true);
+  
+  // Get all real checkboxes to check their state
+  var realCheckboxes = document.querySelectorAll('.rx-config input[type="checkbox"]');
+  var cloneCheckboxes = configClone.querySelectorAll('input[type="checkbox"]');
+  
+  // Replace labels containing checkboxes with visual representation
+  for (var i = 0; i < realCheckboxes.length; i++) {
+    var isChecked = realCheckboxes[i].checked;
+    var label = cloneCheckboxes[i].closest('label');
+    if (label) {
+      if (isChecked) {
+        label.outerHTML = '<span style="color:#000; font-weight:bold; font-size:16px;"> INCLUS</span>';
+      } else {
+        label.outerHTML = '<span style="color:#999; font-size:16px;"> Non sélectionné</span>';
+      }
+    }
+  }
+
+  // Hide the export button in the clone
+  var btn = configClone.querySelector('.rx-export-btn');
+  if (btn) btn.style.display = 'none';
+
+  var w = window.open('', '_blank');
+  var styles = '<style>body{font-family:Arial,sans-serif;color:#111;background:#fff;padding:30px;margin:0}h1{font-size:24px;margin-bottom:6px}h2{font-size:18px;margin-top:30px;margin-bottom:10px;border-bottom:2px solid #111;padding-bottom:6px}h3{font-size:14px;margin-top:20px;margin-bottom:8px;color:#333}table{width:100%;border-collapse:collapse;margin-bottom:20px}th,td{border:1px solid #ccc;padding:8px 10px;font-size:12px;text-align:left}th{background:#111;color:#f4f4f4}tr:nth-child(even){background:#f9f9f9}.rx-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:30px}.rx-spec-item{background:#f5f5f5;padding:12px;border-radius:4px}.rx-spec-item label{font-size:10px;text-transform:uppercase;color:#666;display:block;margin-bottom:4px}.rx-spec-item span{font-size:14px;font-weight:bold} .rx-hero__subtitle{color:#666;font-style:italic;} .pdf-hero{width:100%;height:33vh;object-fit:cover;margin-bottom:20px;display:block;border-radius:4px;} @media print{ .pdf-hero{height:300px;max-height:300px;} }</style>';
+  
+  var imageHtml = imgSrc ? '<img src="' + imgSrc + '" class="pdf-hero" alt="Hero Image">' : '';
+  
+  var fullHtml = '<!DOCTYPE html><html><head><title>' + title + ' - Configuration</title>' + styles + '<script defer src="/lariya-section/js/lariya-transitions-DISABLED.js"><\/script>\n</head><body>' + imageHtml + '<h1>' + title + ' - Configuration et Équipements</h1>' + specsContent + configClone.innerHTML + '</body></html>';
+  
+  w.document.write(fullHtml);
+  w.document.close();
+  
+  // Wait for image to load before printing
+  setTimeout(function(){ w.print(); }, 800);
+}
+        </script>
+
+<!-- Section suivante -->
+                <section class="single-next">
+          <div class="single-next__area" data-next="../expression/index.html">
+            <div class="single-next__cover">
+              <h2 class="single-next__title u-md">
+                <span>RX 4 Statique</span>
+              </h2>
+              <div class="single-next__progress">
+                <div class="single-next__progress-inner"></div>
+              </div>
+            </div>
+            <div class="single-next__image">
+              <picture>
+                <source srcset="../images/RX 3 REMORQUE.jpeg" media="(max-width: 767px)">
+                <img src="../images/RX 3 REMORQUE.jpeg" alt="RX 4 Statique">
+              </picture>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

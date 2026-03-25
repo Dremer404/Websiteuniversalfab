@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À Venir  Modèle Avenir | Universal Fab</title>
+  <meta name="description" content="10 projects that delight in wit, joy and unexpected fun.">
+
+  <!-- Styles Lariya (inline, préservés depuis Nuxt) -->
+  <style>
+    @font-face { font-family: 'PP Neue Montreal Book'; src: url('../_nuxt/ppneuemontreal-book.DFwIyGw9.woff') format('woff'); }
+    @font-face { font-family: 'PP Neue Montreal Medium'; src: url('../_nuxt/ppneuemontreal-medium.B8CHqZdO.woff') format('woff'); }
+
+    /* Reset */
+    *{box-sizing:border-box}:after,:before{box-sizing:inherit}html{line-height:1.15;-webkit-tap-highlight-color:transparent}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;line-height:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}a{background-color:transparent;color:inherit;text-decoration:none}b,strong{font-weight:bolder}button,input,select,textarea{-webkit-appearance:none;appearance:none;background:transparent;border:0;border-radius:0;color:inherit;font:inherit;margin:0;outline:0;padding:0}button{cursor:pointer}table{border-collapse:collapse;border-spacing:0}[hidden]{display:none}
+
+    :root {
+      --color-black: #111;
+      --color-white: #dcdcdc;
+      --border-color: #3f3f3f;
+      --background-color: #080808;
+      --app-grid-padding: 30px;
+    }
+    @media (max-width:767px) { :root { --app-grid-padding: 20px; } }
+
+    ::selection { background: var(--color-white); color: #000; }
+    html, body { height: 100svh; overflow-x: clip; background: var(--background-color); color: var(--color-white); font-family: 'PP Neue Montreal Book', sans-serif; -webkit-font-smoothing: antialiased; scrollbar-width: none; -ms-overflow-style: none; }
+    body::-webkit-scrollbar { display: none; }
+    .u-md { font-family: 'PP Neue Montreal Medium', sans-serif; }
+    .u-ja { font-family: 'Noto Sans JP', sans-serif; }
+    .u-sr { height:1px;overflow:hidden;padding:0;position:absolute;width:1px;clip:rect(1px,1px,1px,1px); }
+    .contents-main { min-height: 100svh; position: relative; width: 100%; }
+
+    /* Header */
+    .header { left:0; opacity:0; pointer-events:none; position:fixed; top:20px; width:100%; z-index:1000; }
+    .header__inner { align-items:center; display:flex; justify-content:space-between; padding-inline:30px; }
+    .header__logo { display:block; transition:opacity .4s ease; }
+    @media (hover:hover) { .header__logo:hover { opacity:.5; } }
+    .header__logo span { color:var(--color-white); font-size:20px; }
+    .header__menu-button { background:none; border:none; cursor:pointer; height:30px; position:relative; width:30px; }
+    .header__menu-line { background:var(--color-white); display:block; height:1px; left:0; position:absolute; transition:all .4s ease; width:100%; }
+    .header__menu-line.top { top:13px; }
+    .header__menu-line.bottom { top:17px; }
+    .header__menu-button.is-open .header__menu-line.top { top:15px; transform:rotate(30deg); }
+    .header__menu-button.is-open .header__menu-line.bottom { top:15px; transform:rotate(-30deg); }
+    .universal-fab-button { background:transparent; border:1px solid rgba(220,220,220,0.4); border-radius:2px; color:var(--color-white); font-size:11px; letter-spacing:0.05em; padding:8px 14px; text-transform:uppercase; transition:background .3s ease, color .3s ease; }
+    @media (hover:hover) { .universal-fab-button:hover { background:var(--color-white); color:#111; } }
+
+    /* Menu */
+    .menu { background:#000; clip-path:inset(0 0 100% 0); height:234px; position:fixed; right:15px; top:12px; width:202px; z-index:99; }
+    .menu.is-open { clip-path:inset(0 0 0% 0); }
+    .menu__ul { padding:0 15px; position:relative; top:55px; }
+    .menu__link { border-bottom:1px solid #1b1b1b; display:flex; justify-content:space-between; padding-block:4px; }
+    @media (hover:hover) { .menu__link:hover .menu__li-text { opacity:.5; } }
+    .menu__li-text { color:var(--color-white); display:block; font-size:15px; overflow:hidden; text-transform:uppercase; transition:opacity .4s ease; }
+    .menu__li-text-inner { display:inline-block; transform:translateY(-100%); }
+    .menu__li-image { background:#333; clip-path:inset(100%); display:block; height:20px; width:20px; overflow:hidden; }
+    .menu__li-image img { height:100%; object-fit:cover; width:100%; }
+
+    /* Single MV */
+    .single { width:100%; }
+    .single-mv { height:100svh; position:relative; width:100%; }
+    .single-mv__image { background:#ccc; height:79%; margin-bottom:30px; overflow:hidden; position:relative; clip-path:inset(100% 0% 0% 0%); width:100%; }
+    @media (max-width:767px) { .single-mv__image { height:75%; margin-bottom:20px; } }
+    .single-mv__image-cover { height:100svh; left:0; position:absolute; top:0; width:100%; }
+    .single-mv__image-cover img { height:100%; object-fit:cover; width:100%; }
+    .single-mv__contents { display:grid; grid-template-columns:repeat(12,1fr); opacity:0; padding-inline:var(--app-grid-padding); width:100%; }
+    @media (max-width:767px) { .single-mv__contents { display:flex; flex-wrap:wrap; gap:10px; padding-inline:20px; } }
+    .single-mv__contents-titles { grid-column:1/span 3; }
+    .single-mv__contents-group { display:flex; flex-direction:column; gap:10px; }
+    @media (max-width:767px) { .single-mv__contents-group { align-items:flex-end; flex-direction:row; } }
+    .single-mv__contents-group h1 { color:var(--color-white); font-size:40px; }
+    @media (max-width:767px) { .single-mv__contents-group h1 { font-size:24px; } }
+    .single-mv__contents-group p { color:var(--color-white); font-size:16px; font-weight:600; }
+    .single-mv__en { grid-column:4/span 3; }
+    .single-mv__en p { color:var(--color-white); font-size:18px; line-height:1; }
+    @media (max-width:767px) { .single-mv__en p { font-size:14px; } }
+    .single-mv__ja { grid-column:8/span 3; }
+    .single-mv__ja p { color:var(--color-white); font-size:13px; font-weight:600; line-height:1.7; }
+    .single-mv__scroll { color:var(--color-white); font-size:14px; grid-column:11/span 3; line-height:1; text-align:right; }
+
+    /* Single Contents */
+    .single-contents { display:grid; grid-template-columns:repeat(12,1fr); padding-inline:var(--app-grid-padding); padding-bottom:100px; padding-top:100px; width:100%; }
+    @media (max-width:767px) { .single-contents { display:flex; flex-direction:column; gap:40px; padding-block:80px 50px; padding-inline:20px; } }
+    .single-contents__head { grid-column:1/span 4; }
+    .single-contents__head-video { background:#333; left:0; padding-top:56%; position:sticky; top:120px; overflow:hidden; position:relative; }
+    .single-contents__head-video video { height:100%; left:0; object-fit:cover; position:absolute; top:0; width:100%; }
+    .single-contents__head p { align-items:center; color:var(--color-white); display:flex; font-size:14px; gap:10px; position:absolute; top:-28px; }
+    .single-contents__head p::before { background:var(--color-white); content:""; height:6px; width:6px; }
+    .single-contents__lists { display:flex; flex-direction:column; grid-column:6/span 8; }
+    .single-contents__link { border-bottom:1px solid var(--color-white); display:grid; grid-template-columns:repeat(12,1fr); padding-block:16px; transition:opacity .2s ease; }
+    @media (hover:hover) { .single-contents__link:hover .single-contents__link-category,
+                            .single-contents__link:hover .single-contents__link-date,
+                            .single-contents__link:hover .single-contents__link-title { opacity:.5; } }
+    .single-contents__link-title { color:var(--color-white); font-size:18px; grid-column:1/span 5; transition:opacity .4s ease; }
+    @media (max-width:767px) { .single-contents__link-title { font-size:14px; } }
+    .single-contents__link-category { color:var(--color-white); font-size:14px; grid-column:10/span 2; transition:opacity .4s ease; }
+    .single-contents__link-date { color:var(--color-white); font-size:14px; grid-column:12/span 2; text-align:right; transition:opacity .4s ease; }
+
+    /* Single Next */
+    .single-next { height:3000px; position:relative; width:100%; }
+    .single-next__area { height:100svh; left:0; overflow:hidden; position:sticky; top:0; width:100%; }
+    .single-next__image { height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%; z-index:0; }
+    .single-next__image img { height:100%; object-fit:cover; width:100%; }
+    .single-next__cover { left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); z-index:1; }
+    .single-next__title { color:var(--color-white); font-size:24px; margin-bottom:16px; overflow:hidden; text-align:center; text-transform:uppercase; }
+    .single-next__title span { display:block; }
+    .single-next__progress { background:#7e7b7b; height:1px; margin:auto; position:relative; width:180px; }
+    .single-next__progress-inner { background:var(--color-white); height:1px; left:0; position:absolute; top:0; width:0; }
+  
+    /* RX Product Styles */
+    .rx-hero { padding: 60px var(--app-grid-padding) 40px; background: var(--background-color); }
+    .rx-hero__badge { color: var(--color-white); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+    .rx-hero__title { color: var(--color-white); font-size: clamp(32px, 6vw, 64px); font-family: "PP Neue Montreal Medium", sans-serif; line-height: 1; margin-bottom: 8px; }
+    .rx-hero__subtitle { color: var(--color-white); opacity: 0.6; font-size: 14px; margin-bottom: 40px; }
+    .rx-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 0; }
+    .rx-spec-item { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 16px; }
+    .rx-spec-item label { color: var(--color-white); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; display: block; margin-bottom: 6px; }
+    .rx-spec-item span { color: var(--color-white); font-size: 15px; font-family: "PP Neue Montreal Medium", sans-serif; display: block; }
+    .rx-config { padding: 60px var(--app-grid-padding); }
+    .rx-config__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .rx-config__title { color: var(--color-white); font-size: 22px; }
+    .rx-export-btn { display: flex; align-items: center; gap: 8px; background: var(--color-white); color: #111; border: none; padding: 12px 20px; font-size: 12px; font-family: "PP Neue Montreal Medium", sans-serif; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: background 0.3s, color 0.3s; }
+    .rx-export-btn:hover { background: #111; color: var(--color-white); outline: 1px solid var(--color-white); }
+    .rx-table-group { margin-bottom: 40px; }
+    .rx-table-group__title { color: var(--color-white); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+    .rx-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .rx-table th { background: rgba(255,255,255,0.08); color: var(--color-white); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    .rx-table td { color: var(--color-white); padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: middle; }
+    .rx-table tr:hover td { background: rgba(255,255,255,0.03); }
+    .rx-check { display: inline-flex; align-items: center; cursor: pointer; }
+    .rx-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .rx-check span { display: inline-block; width: 18px; height: 18px; border: 1px solid rgba(220,220,220,0.4); background: transparent; position: relative; transition: background 0.2s, border-color 0.2s; }
+    .rx-check input:checked + span { background: var(--color-white); border-color: var(--color-white); }
+    .rx-check input:checked + span::after { content: ""; position: absolute; left: 5px; top: 2px; width: 6px; height: 10px; border: 2px solid #111; border-top: none; border-left: none; transform: rotate(45deg); }
+    .rx-base { color: var(--color-white); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; }
+    .rx-avenir { text-align: center; padding: 80px 30px; }
+    .rx-avenir__icon { font-size: 48px; margin-bottom: 20px; }
+    .rx-avenir__title { color: var(--color-white); font-size: 32px; font-family: "PP Neue Montreal Medium", sans-serif; margin-bottom: 16px; }
+    .rx-avenir__text { color: var(--color-white); opacity: 0.6; font-size: 15px; max-width: 400px; margin: 0 auto 30px; line-height: 1.6; }
+    .rx-avenir__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .rx-avenir__card { background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); padding: 24px; text-align: left; }
+    .rx-avenir__card-title { color: var(--color-white); font-size: 14px; font-family: "PP Neue Montreal Medium", sans-serif; margin-bottom: 8px; }
+    .rx-avenir__card-text { color: var(--color-white); opacity: 0.5; font-size: 12px; line-height: 1.5; }
+    @media print { .rx-export-btn { display: none !important; } }
+</style>
+
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../_nuxt/entry.DO7avDX8.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Scripts -->
+  <script defer src="../../js/lariya-subpage-init.js"></script>
+  <script defer src="../../js/shared-header.js"></script>
+<!-- <script defer src="/lariya-section/js/lariya-transitions-DISABLED.js"></script> -->
+</head>
+<body data-barba="wrapper">
+
+  <!-- ====== HEADER PERSISTANT (hors container Barba) ====== -->
+  <header class="header" id="lariya-header" style="opacity:0; pointer-events:none;">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo u-md">
+        <span>Universal Fab</span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- Botton HOME / Nos Produits géré par shared-header.js -->
+        <a href="../../index.html" id="section-toggle" style="color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; cursor: pointer; text-decoration: none;">
+          <span id="section-toggle-text">HOME</span>
+        </a>
+
+        <!-- Menu burger Lariya -->
+        <button id="menu-btn" class="header__menu-button" aria-label="menu open">
+          <span class="header__menu-line top"></span>
+          <span class="header__menu-line bottom"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU -->
+  <nav class="menu" id="site-menu" aria-hidden="true">
+    <div class="menu__contents">
+      <ul class="menu__ul u-md">
+        <li class="menu__li">
+          <a href="index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">A Venir</span></span>
+            <span class="menu__li-image"><img src="../images/RX1 ELECTRIQUE.jpeg" alt="creative"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../exploration/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 2 Thermique</span></span>
+            <span class="menu__li-image"><img src="../images/RX1 ELECTRIQUE.jpeg" alt="exploration"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../growth/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 3 Remorquable</span></span>
+            <span class="menu__li-image"><img src="../images/RX1 ELECTRIQUE.jpeg" alt="growth"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../expression/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">RX 4 Statique</span></span>
+            <span class="menu__li-image"><img src="../images/RX1 ELECTRIQUE.jpeg" alt="expression"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="../playfulness/index.html" class="menu__link">
+            <span class="menu__li-text"><span class="menu__li-text-inner">A Venir</span></span>
+            <span class="menu__li-image"><img src="../images/RX1 ELECTRIQUE.jpeg" alt="playfulness"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="__container">
+    <main class="contents-main" data-container="creative">
+      <div class="single">
+
+        <!-- Hero image -->
+        <section class="single-mv">
+          <div class="single-mv__image">
+            <div class="single-mv__image-cover">
+              <picture>
+                <source srcset="../images/RX1 ELECTRIQUE.jpeg" media="(max-width: 767px)">
+                <img src="../images/RX1 ELECTRIQUE.jpeg" alt="Creative section">
+              </picture>
+            </div>
+          </div>
+          <div class="single-mv__contents">
+            <div class="single-mv__contents-titles">
+              <hgroup class="single-mv__contents-group u-md">
+                <h1>A Venir</h1>
+                <p class="u-ja">未来</p>
+              </hgroup>
+            </div>
+            <div class="single-mv__en">
+              <p class="u-md">The future of mobile food service  next-generation models in development.</p>
+            </div>
+            <div class="single-mv__ja">
+              <p>次世代モバイルフードサービス  開発中の未来モデル</p>
+            </div>
+            <p class="single-mv__scroll u-md">ScrollDown</p>
+          </div>
+        </section>
+
+        
+        <!-- Spécifications RX -->
+        <section class="rx-avenir">
+          <div class="rx-avenir__icon"></div>
+          <h2 class="rx-avenir__title u-md">Modèles en développement</h2>
+          <p class="rx-avenir__text">Universal Fab travaille sur la prochaine génération de food trucks. Ces modèles repousseront les limites de la mobilité, de l'autonomie et du design.</p>
+          <div class="rx-avenir__cards">
+            <div class="rx-avenir__card">
+              <div class="rx-avenir__card-title"> RX 5  Full Autonome</div>
+              <div class="rx-avenir__card-text">Entièrement autonome en énergie via panneaux solaires intégrés et batterie longue portée. Zéro dépendance au réseau électrique ou à l'essence.</div>
+            </div>
+            <div class="rx-avenir__card">
+              <div class="rx-avenir__card-title"> RX 6  Smart Truck</div>
+              <div class="rx-avenir__card-text">Intégration IoT complète  gestion des stocks en temps réel, commandes en ligne, analytics de vente et surveillance à distance via application mobile.</div>
+            </div>
+            <div class="rx-avenir__card">
+              <div class="rx-avenir__card-title"> RX 7  Bio Series</div>
+              <div class="rx-avenir__card-text">Matériaux 100% recyclés, empreinte carbone neutre certifiée, conçu pour la restauration biologique et les marchés éco-responsables.</div>
+            </div>
+            <div class="rx-avenir__card">
+              <div class="rx-avenir__card-title"> RX Container</div>
+              <div class="rx-avenir__card-text">Version container 20 pieds  installation permanente grand format avec cuisine professionnelle complète, idéale pour les sites industriels et rationnels.</div>
+            </div>
+          </div>
+        </section>
+
+<!-- Section suivante -->
+                <section class="single-next">
+          <div class="single-next__area" data-next="../creative/index.html">
+            <div class="single-next__cover">
+              <h2 class="single-next__title u-md">
+                <span>RX 1 Électrique</span>
+              </h2>
+              <div class="single-next__progress">
+                <div class="single-next__progress-inner"></div>
+              </div>
+            </div>
+            <div class="single-next__image">
+              <picture>
+                <source srcset="../images/RX1 ELECTRIQUE.jpeg" media="(max-width: 767px)">
+                <img src="../images/RX1 ELECTRIQUE.jpeg" alt="RX 1 Électrique">
+              </picture>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

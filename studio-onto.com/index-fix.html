@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT0G87CKQ5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZT0G87CKQ5');
+    </script>
+    <meta charset="utf-8">
+    <title>Universal Fab</title>
+    <meta name="description" content="ONTO — The Founder Studio. We partner with visionary founders and teams to build game-changing products.">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:image" content="we_are_onto.jpg" />
+    <link rel="icon" href="favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="libs/lottie.js"></script>
+    <link href="dist/index.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: auto;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #onto-section {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .cursor { pointer-events: none; }
+    </style>
+</head>
+<body data-barba="wrapper">
+    <header class="header">
+        <h1>
+            <a href="index.html" aria-label="Home" title="Home">
+                <span id="logo-lottie"></span>
+            </a>
+        </h1>
+        <div class="header__menu">
+            <a href="lariya-section/index.html" class="header__menu__work" id="section-toggle" aria-label="Nos produits" title="Nos produits" style="cursor:pointer; z-index: 10000; position: relative;">
+                <span id="section-toggle-text" style="font-weight:bold; font-size:16px;">Nos produits</span>
+            </a>
+        </div>
+    </header>
+
+    <main data-barba="container" data-barba-namespace="home" id="onto-section">
+        <div class="home page">
+            <!-- Splash Screen -->
+            <div id="lariya-simple-splash" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:#111; z-index:999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:sans-serif; pointer-events: none;">
+                <div id="splash-title" style="font-size:32px; letter-spacing:8px; opacity:0; transform:translateY(20px); font-weight:bold; margin-bottom:10px;">UNIVERSAL FAB</div>
+                <div id="splash-presente" style="font-size:14px; letter-spacing:4px; opacity:0; transform:translateY(10px);">présente</div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (typeof gsap !== 'undefined') {
+                        const tl = gsap.timeline();
+                        tl.to('#splash-title', { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: 'power2.out' });
+                        tl.to('#splash-presente', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, "-=0.3");
+                        tl.to('#lariya-simple-splash', { opacity: 0, duration: 1, delay: 1.5, onComplete: () => {
+                            var el = document.getElementById('lariya-simple-splash'); if(el) el.remove();
+                        }});
+                    }
+                });
+            </script>
+            
+            <div id="lottie" style="display:none !important"></div>
+            <div class="home__content">
+                <div class="container">
+                    <div class="home__content__head">
+                        <p class="design">Design for Disrupters</p>
+                        <div class="content">
+                            <img src="img/logo.svg" alt="onto" />
+                            <h2>Universal Fab</h2>
+                        </div>
+                        <button type="button" class="home-play">Fullscreen</button>
+                        <button type="button" class="home-switch" aria-label="Switch Theme" title="Switch Theme">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.349243 8.13518V8.81319H16.6196V8.13518H0.349243Z" fill="#111111"/>
+                                <path d="M0.349243 8.13518V8.81319H16.6196V8.13518H0.349243Z" fill="#111111"/>
+                                <path d="M8.14621 16.6308H8.82422V0.360377H8.14621V16.6308Z" fill="#111111"/>
+                                <path d="M8.14621 16.6308H8.82422V0.360377H8.14621V16.6308Z" fill="#111111"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- <div class="home__content__video">
+                        <video loop playsinline muted preload poster="img/newreel.jpg">
+                            <source src="video/reelsound.mp4" type="video/mp4" />
+                        </video>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="cursor">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.542847 7.67929V8.30078H15.4571V7.67929H0.542847Z" fill="white"/>
+            <path d="M0.542847 7.67929V8.30078H15.4571V7.67929H0.542847Z" fill="white"/>
+            <path d="M7.6893 15.4668H8.31079V0.552504H7.6893V15.4668Z" fill="white"/>
+            <path d="M7.6893 15.4668H8.31079V0.552504H7.6893V15.4668Z" fill="white"/>
+        </svg>
+        <span>open case study</span>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('section-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = 'lariya-section/index.html';
+            });
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nos Food Trucks | Universal Fab</title>
+  <meta name="description" content="Découvrez nos parcs de food trucks répartis en 5 gammes : Electrique, Thermique, Remorquable, Statique et A Venir.">
+
+  <!-- Styles Lariya (extraits et conservés depuis l'export Nuxt) -->
+  <style>
+    @font-face { font-family: 'PP Neue Montreal Book'; src: url('_nuxt/ppneuemontreal-book.DFwIyGw9.woff') format('woff'); }
+    @font-face { font-family: 'PP Neue Montreal Medium'; src: url('_nuxt/ppneuemontreal-medium.B8CHqZdO.woff') format('woff'); }
+
+    /* Reset (destyle.css) */
+    *{box-sizing:border-box}:after,:before{box-sizing:inherit}html{line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;line-height:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}hr{border:0;border-top:1px solid;color:inherit;height:0;margin:0}a{background-color:transparent;color:inherit;text-decoration:none}b,strong{font-weight:bolder}button,input,select,textarea{appearance:none;background:transparent;border:0;border-radius:0;color:inherit;font:inherit;margin:0;outline:0;padding:0}button{cursor:pointer}table{border-collapse:collapse;border-spacing:0}
+
+    /* Variables */
+    :root {
+      --color-black: #111;
+      --color-white: #dcdcdc;
+      --border-color: #3f3f3f;
+      --background-color: #080808;
+      --app-font-xxl: 36px;
+      --app-font-xl: 16px;
+      --app-font-l: 14px;
+      --app-font-m: 12px;
+      --app-font-s: 10px;
+      --app-grid-padding: 30px;
+    }
+    @media (max-width: 767px) {
+      :root { --app-font-xxl: 22px; --app-grid-padding: 20px; }
+    }
+
+    /* Base */
+    ::selection { background: var(--color-white); color: #000; }
+    html, body { height: 100svh; overflow-x: clip; background: var(--background-color); color: var(--color-white); font-family: 'PP Neue Montreal Book', sans-serif; -webkit-font-smoothing: antialiased; -ms-overflow-style: none; scrollbar-width: none; }
+    body::-webkit-scrollbar { display: none; }
+    .u-md { font-family: 'PP Neue Montreal Medium', sans-serif; }
+    .u-sr { height:1px;overflow:hidden;padding:0;position:absolute;width:1px;clip:rect(1px,1px,1px,1px);border:0; }
+    .contents-main { min-height: 100svh; position: relative; width: 100%; }
+
+    /* ——— HEADER ——— */
+    .header { left:0; position:fixed; top:20px; width:100%; z-index:1000; }
+    @media (max-width:767px) { .header { top:16px; } }
+    .header__inner { align-items:center; display:flex; justify-content:space-between; padding-inline:30px; }
+    @media (max-width:767px) { .header__inner { padding-inline:20px; } }
+    .header__logo { display:block; transition:opacity .4s ease; }
+    @media (hover:hover) { .header__logo:hover { opacity:.5; } }
+    .header__logo span { color:var(--color-white); font-size:20px; }
+    .header__menu-button { height:30px; position:relative; width:30px; background:none; border:none; cursor:pointer; }
+    .header__menu-line { background:var(--color-white); display:block; height:1px; left:0; position:absolute; transition:all .4s ease; width:100%; }
+    .header__menu-line.top { top:13px; }
+    .header__menu-line.bottom { top:17px; }
+    .header__menu-button.is-open .header__menu-line.top { top:15px; transform:rotate(30deg); }
+    .header__menu-button.is-open .header__menu-line.bottom { top:15px; transform:rotate(-30deg); }
+
+    /* "Qui sommes-nous" button (FAB) */
+    .universal-fab-button {
+      background: transparent;
+      border: 1px solid rgba(220,220,220,0.4);
+      color: var(--color-white);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 8px 14px;
+      text-transform: uppercase;
+      transition: background .3s ease, color .3s ease;
+      border-radius: 2px;
+    }
+    @media (hover:hover) { .universal-fab-button:hover { background: var(--color-white); color: #111; } }
+
+    /* ——— MENU ——— */
+    .menu { background:#000; clip-path:inset(0 0 100% 0); height:234px; position:fixed; right:15px; top:12px; width:202px; z-index:99; transition: clip-path 0.4s ease; }
+    .menu.is-open { clip-path:inset(0 0 0% 0); }
+    @media (max-width:767px) { .menu { right:10px; } }
+    .menu__ul { padding:0 15px; position:relative; top:55px; }
+    .menu__link { border-bottom:1px solid #1b1b1b; display:flex; justify-content:space-between; padding-block:4px; }
+    @media (hover:hover) { .menu__link:hover .menu__li-text { opacity:.5; } }
+    .menu__li-text { color:var(--color-white); display:block; font-size:15px; overflow:hidden; text-transform:uppercase; transition:opacity .4s ease; }
+    .menu__li-image { background:#333; display:block; height:20px; width:20px; overflow:hidden; }
+    .menu__li-image img { height:100%; object-fit:cover; width:100%; }
+
+    /* ——— HOME MV ——— */
+    .home-mv { height:100svh; overflow:hidden; position:relative; width:100%; }
+    .home-mv__contents { bottom:20px; left:50%; position:absolute; text-align:center; transform:translate(-50%,0); }
+    @media (max-width:767px) { .home-mv__contents { width:100%; } }
+    .home-mv__title { color:var(--color-white); display:flex; font-size:64px; justify-content:center; letter-spacing:-.024em; line-height:1; margin-bottom:8px; overflow:hidden; text-transform:uppercase; }
+    @media (max-width:767px) { .home-mv__title { font-size:40px; } }
+    .home-mv__title span { display:block; }
+    .home-mv__sub { color:var(--color-white); display:flex; font-size:24px; justify-content:center; margin-bottom:27px; }
+    @media (max-width:767px) { .home-mv__sub { font-size:18px; } }
+    .home-mv__background { align-items:center; display:flex; height:100%; justify-content:center; left:0; position:absolute; top:0; width:100%; z-index:0; }
+    .home-mv__background-inner { height:100%; position:relative; width:100%; }
+    .home-mv__background img { display:block; height:100%; left:0; object-fit:cover; position:absolute; top:0; width:100%; }
+    .home-mv__background [data-mv-image="1"],
+    .home-mv__background [data-mv-image="2"],
+    .home-mv__background [data-mv-image="3"],
+    .home-mv__background [data-mv-image="4"] { opacity: 0; }
+    .home-mv__background-filter { background:#000; height:100%; left:0; opacity:.4; position:absolute; top:0; width:100%; z-index:1; }
+    .home-mv__detail { display:flex; justify-content:space-between; left:50%; padding-inline:30px; position:absolute; top:50%; transform:translate(-50%,-50%); width:calc(100% - 60px); z-index:10; }
+    .home-mv__detail-text { color:var(--color-white); font-size:13px; line-height:1; text-transform:uppercase; }
+
+    /* ——— OVERVIEW ——— */
+    .home-overview { display:flex; flex-direction:column; gap:100px; padding-block:100px; width:100%; }
+    @media (max-width:767px) { .home-overview { gap:60px; padding-block:60px; } }
+    .home-overview__head { display:grid; grid-template-columns:repeat(12,1fr); padding-inline:var(--app-grid-padding); }
+    @media (max-width:767px) { .home-overview__head { display:block; } }
+    .home-overview__title { color:var(--color-white); font-size:24px; grid-column:1/span 3; line-height:1; }
+    @media (max-width:767px) { .home-overview__title { font-size:20px; margin-bottom:20px; } }
+    .home-overview__contents { grid-column:9/span 4; word-break:break-all; }
+    .home-overview__contents-en { color:var(--color-white); font-size:18px; line-height:1.2; margin-bottom:22px; }
+    @media (max-width:767px) { .home-overview__contents-en { font-size:14px; } }
+    .home-overview__contents-ja { color:var(--color-white); font-size:14px; font-weight:600; letter-spacing:.02em; line-height:1.7; opacity:.7; }
+    .home-overview__images { align-items:flex-start; display:grid; grid-template-columns:repeat(12,1fr); padding-inline:var(--app-grid-padding); }
+    @media (max-width:767px) { .home-overview__images { display:flex; flex-direction:column; } }
+    .home-overview__large { background:#000; grid-column:1/span 5; overflow:hidden; padding-top:70%; position:relative; }
+    @media (max-width:767px) { .home-overview__large { margin-bottom:40px; width:80%; } }
+    .home-overview__small { background:#000; grid-column:10/span 3; overflow:hidden; padding-top:70%; position:relative; }
+    @media (max-width:767px) { .home-overview__small { margin-left:auto; padding-top:50%; width:40%; } }
+    .home-overview__images img { height:150%; left:50%; object-fit:cover; position:absolute; top:-100px; width:150%; }
+
+    /* ——— CATEGORY ——— */
+    .home-category { position:relative; width:100%; }
+    .home-category__background { height:100svh; left:0; overflow:hidden; position:sticky; top:0; width:100%; }
+    .home-category__background img { height:100%; object-fit:cover; width:100%; }
+    .home-category__background-inner { height:100svh; position:relative; width:100%; }
+    .home-category-main { height:100svh; position:relative; width:100%; }
+    [data-section="0"] { margin-top:-100svh; }
+    .home-category__contents { left:50%; position:absolute; text-align:center; top:50%; transform:translate(-50%,-50%); }
+    .home-category__title { color:var(--color-white); font-size:40px; margin-bottom:12px; text-transform:uppercase; }
+    @media (max-width:767px) { .home-category__title { font-size:24px; margin-bottom:5px; } }
+    .home-category__text { color:var(--color-white); font-size:18px; line-height:1; margin-bottom:32px; width:310px; }
+    @media (max-width:767px) { .home-category__text { font-size:14px; margin-bottom:16px; width:240px; } }
+    .home-category__view { background:#000; display:block; margin:auto; padding:14px 106px 14px 20px; position:relative; width:fit-content; }
+    @media (max-width:767px) { .home-category__view { padding:10px 80px 10px 14px; } }
+    @media (hover:hover) { .home-category__view:hover .home-category__view-background { width:100%; } .home-category__view:hover span { color:#111; } .home-category__view:hover svg path { fill:#111; } }
+    .home-category__view span { color:var(--color-white); font-size:12px; position:relative; text-transform:uppercase; transition:color .4s ease; z-index:1; }
+    .home-category__view svg { position:absolute; right:20px; top:50%; transform:translateY(-50%); z-index:1; }
+    .home-category__view svg path { transition:fill .4s ease; }
+    .home-category__view-background { background:var(--color-white); display:block; height:100%; left:0; position:absolute; top:0; transition:width .4s ease; width:0; }
+
+    /* ——— LEARNING ——— */
+    .home-learning { padding-block:85px; width:100%; }
+    .home-learning__contents { align-items:flex-start; display:grid; grid-template-columns:repeat(12,1fr); margin-bottom:40px; padding-inline:var(--app-grid-padding); word-break:break-all; }
+    @media (max-width:767px) { .home-learning__contents { display:flex; flex-direction:column; gap:20px; } }
+    .home-learning__contents-title { color:var(--color-white); font-size:18px; grid-column:1/span 2; line-height:1; }
+    .home-learning__contents-en { color:var(--color-white); font-size:14px; grid-column:3/span 4; line-height:1.2; }
+    .home-learning__contents-ja { color:var(--color-white); font-size:12px; font-weight:600; grid-column:8/span 5; line-height:1.7; opacity:.7; }
+    .home-learning__video { margin:auto; overflow:hidden; padding-top:55%; position:relative; width:calc(100% - 60px); }
+    .home-learning__video-inner { bottom:0; height:100%; position:absolute; right:0; width:100%; }
+    .home-learning__video video { height:100%; object-fit:cover; width:100%; }
+
+    /* ——— FOOTER ——— */
+    .home-footer__next { display:block; height:375px; overflow:hidden; position:relative; width:100%; }
+    @media (hover:hover) { .home-footer__next:hover .home-footer__next-text { opacity:.5; } }
+    .home-footer__next img { height:100%; object-fit:cover; width:100%; }
+    .home-footer__next-text { color:var(--color-white); display:flex; font-size:18px; justify-content:center; left:50%; position:absolute; text-align:center; top:50%; transform:translate(-50%,-50%); transition:opacity .4s ease; width:100%; z-index:1; }
+    .home-footer__next-filter { background:#000; height:100%; left:0; opacity:.1; position:absolute; top:0; width:100%; z-index:0; }
+  </style>
+
+  <!-- Styles de l'application partagée -->
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="_nuxt/entry.DO7avDX8.css">
+
+  <!-- GSAP (requis par lariya-init.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Script d'initialisation Lariya (recrée les animations Nuxt avec GSAP) -->
+  <script defer src="../js/lariya-init.js"></script>
+  <script defer src="../js/shared-header.js"></script>
+<script defer src="/lariya-section/js/lariya-transitions.js"></script>
+</head>
+<body data-barba="wrapper">
+
+  <!-- ====== HEADER PERSISTANT (hors container Barba) ====== -->
+  <header class="header" id="lariya-header" style="opacity:0; pointer-events:none;">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo u-md">
+        <span>Universal Fab</span>
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- Botton HOME / Nos Produits géré par shared-header.js -->
+        <a href="../index.html" id="section-toggle" style="color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; cursor: pointer; text-decoration: none;">
+          <span id="section-toggle-text">HOME</span>
+        </a>
+
+        <!-- Back to Onto via menu -->
+        <button id="menu-btn" class="header__menu-button" aria-label="menu open">
+          <span class="header__menu-line top"></span>
+          <span class="header__menu-line bottom"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu déroulant -->
+  <nav class="menu" id="site-menu" aria-hidden="true">
+    <div class="menu__contents">
+      <ul class="menu__ul u-md">
+        <li class="menu__li">
+          <a href="creative/index.html" class="menu__link">
+            <span class="menu__li-text">RX 1 Électrique</span>
+            <span class="menu__li-image"><img src="images/single/creative.png" alt="creative"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="exploration/index.html" class="menu__link">
+            <span class="menu__li-text">RX 2 Thermique</span>
+            <span class="menu__li-image"><img src="images/single/exploration.png" alt="exploration"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="growth/index.html" class="menu__link">
+            <span class="menu__li-text">RX 3 Remorquable</span>
+            <span class="menu__li-image"><img src="images/single/growth.jpg" alt="growth"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="expression/index.html" class="menu__link">
+            <span class="menu__li-text">RX 4 Statique</span>
+            <span class="menu__li-image"><img src="images/single/expression.jpg" alt="expression"></span>
+          </a>
+        </li>
+        <li class="menu__li">
+          <a href="playfulness/index.html" class="menu__link">
+            <span class="menu__li-text">A Venir</span>
+            <span class="menu__li-image"><img src="images/single/playfulness.jpg" alt="playfulness"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ====== BARBA CONTAINER ====== -->
+  <div data-barba="container" data-barba-namespace="lariya">
+    <div class="__container">
+      <main class="contents-main">
+        <div class="home">
+
+          <!-- Hero / Main Visual -->
+          <section class="home-mv">
+            <div class="home-mv__contents">
+              <h1 class="home-mv__title u-md" aria-hidden="true">
+                <span>G</span><span>a</span><span>m</span><span>m</span><span>e</span>
+                <span>&nbsp;</span>
+                <span>r</span><span>e</span><span>s</span><span>t</span><span>a</span><span>u</span><span>r</span><span>a</span><span>n</span><span>t</span>
+                <br>
+                <span>m</span><span>o</span><span>b</span><span>i</span><span>l</span><span>e</span>
+              </h1>
+              <span class="u-sr">Gamme Restaurant Mobile</span>
+              <h2 class="home-mv__sub u-md" aria-hidden="true">
+                <span>d</span><span>i</span><span>v</span><span>e</span><span>r</span><span>s</span><span>e</span>
+                <span>&nbsp;</span>
+                <span>g</span><span>a</span><span>m</span><span>m</span><span>e</span>
+                <span>&nbsp;</span>
+                <span>d</span><span>e</span>
+                <span>&nbsp;</span>
+                <span>F</span><span>o</span><span>o</span><span>d</span><span>T</span><span>r</span><span>u</span><span>c</span><span>k</span>
+              </h2>
+              <span class="u-sr">diverse gamme de FoodTruck</span>
+            </div>
+            <div class="home-mv__background">
+              <div class="home-mv__background-inner">
+                <img src="images/acceuille lariya img.jpeg" alt="accueil lariya" style="width:100%; height:100%; object-fit:cover;">
+              </div>
+              <div class="home-mv__background-filter"></div>
+            </div>
+            <div class="home-mv__detail u-md">
+              <p class="home-mv__detail-text"><span>Prototype</span></p>
+              <p class="home-mv__detail-text"><span>de</span></p>
+              <p class="home-mv__detail-text"><span>(2024)</span></p>
+              <p class="home-mv__detail-text"><span>à</span></p>
+              <p class="home-mv__detail-text"><span>nos jours</span></p>
+            </div>
+          </section>
+
+          <!-- Overview -->
+          <section class="home-overview" data-group>
+            <div class="home-overview__head">
+              <h2 class="home-overview__title u-md" data-split-target>Overview</h2>
+              <div class="home-overview__contents">
+                <p class="home-overview__contents-en u-md" data-split-target>
+                  Voici notre sélection exclusive de food trucks conçus pour la restauration mobile. Sur cette page, nos différents modèles sont organisés en 5 catégories : Électrique, Thermique, Remorquable, Statique, et nos Concepts à venir.
+                </p>
+                <p class="home-overview__contents-ja">
+                  Profitez de nos food trucks aménagés pour lancer votre activité. Explorez nos modèles et choisissez la taille parfaite pour votre projet.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Categories -->
+          <section class="home-category">
+            <div class="home-category__background">
+              <div class="home-category__background-inner">
+                <img src="images/RX1 ELECTRIQUE.jpeg" data-cat-bg="0" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:1; transition: opacity 0.8s ease;">
+                <img src="images/RX 2 THERMIQUE.jpeg" data-cat-bg="1" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 0.8s ease;">
+                <img src="images/RX 3 REMORQUE.jpeg" data-cat-bg="2" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 0.8s ease;">
+                <img src="images/RX 4 STATIQUE.jpeg" data-cat-bg="3" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 0.8s ease;">
+                <img src="images/RX1 ELECTRIQUE.jpeg" data-cat-bg="4" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 0.8s ease;">
+                <div style="position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.3); pointer-events:none;"></div>
+              </div>
+            </div>
+
+            <article class="home-category-main u-md" data-section="0">
+              <div class="home-category__contents" data-group>
+                <h2 class="home-category__title" data-split-target>RX 1 Électrique</h2>
+                <p class="home-category__text" data-split-target>Modèles électriques alliant forte autonomie, durabilité et un design éclatant.</p>
+                <a href="creative/index.html" class="home-category__view">
+                  <span>view more</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L5.17157 0.464466C4.97631 0.269204 4.65973 0.269204 4.46447 0.464466C4.2692 0.659728 4.2692 0.976311 4.46447 1.17157L7.29289 4L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8.35355 4.35355ZM0 4V4.5H8V4V3.5H0V4Z" fill="#DCDCDC"/></svg>
+                  <div class="home-category__view-background"></div>
+                </a>
+              </div>
+            </article>
+
+            <article class="home-category-main u-md" data-section="1">
+              <div class="home-category__contents" data-group>
+                <h2 class="home-category__title" data-split-target>RX 2 Thermique</h2>
+                <p class="home-category__text" data-split-target>Modèles thermiques alliant robustesse, puissance continue et équipement lourd.</p>
+                <a href="exploration/index.html" class="home-category__view">
+                  <span>view more</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L5.17157 0.464466C4.97631 0.269204 4.65973 0.269204 4.46447 0.464466C4.2692 0.659728 4.2692 0.976311 4.46447 1.17157L7.29289 4L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8.35355 4.35355ZM0 4V4.5H8V4V3.5H0V4Z" fill="#DCDCDC"/></svg>
+                  <div class="home-category__view-background"></div>
+                </a>
+              </div>
+            </article>
+
+            <article class="home-category-main u-md" data-section="2">
+              <div class="home-category__contents" data-group>
+                <h2 class="home-category__title" data-split-target>RX 3 Remorquable</h2>
+                <p class="home-category__text" data-split-target>Des remorques compactes prouvant tout l'art de l'optimisation professionnelle.</p>
+                <a href="growth/index.html" class="home-category__view">
+                  <span>view more</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L5.17157 0.464466C4.97631 0.269204 4.65973 0.269204 4.46447 0.464466C4.2692 0.659728 4.2692 0.976311 4.46447 1.17157L7.29289 4L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8.35355 4.35355ZM0 4V4.5H8V4V3.5H0V4Z" fill="#DCDCDC"/></svg>
+                  <div class="home-category__view-background"></div>
+                </a>
+              </div>
+            </article>
+
+            <article class="home-category-main u-md" data-section="3">
+              <div class="home-category__contents" data-group>
+                <h2 class="home-category__title" data-split-target>RX 4 Statique</h2>
+                <p class="home-category__text" data-split-target>Des kiosques fixes avec un style architectural abouti et des designs premium.</p>
+                <a href="expression/index.html" class="home-category__view">
+                  <span>view more</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L5.17157 0.464466C4.97631 0.269204 4.65973 0.269204 4.46447 0.464466C4.2692 0.659728 4.2692 0.976311 4.46447 1.17157L7.29289 4L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8.35355 4.35355ZM0 4V4.5H8V4V3.5H0V4Z" fill="#DCDCDC"/></svg>
+                  <div class="home-category__view-background"></div>
+                </a>
+              </div>
+            </article>
+
+            <article class="home-category-main u-md" data-section="4">
+              <div class="home-category__contents" data-group>
+                <h2 class="home-category__title" data-split-target>A Venir</h2>
+                <p class="home-category__text" data-split-target>De futurs concepts au design disruptif : préparez la restauration de demain.</p>
+                <a href="playfulness/index.html" class="home-category__view">
+                  <span>view more</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L5.17157 0.464466C4.97631 0.269204 4.65973 0.269204 4.46447 0.464466C4.2692 0.659728 4.2692 0.976311 4.46447 1.17157L7.29289 4L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8.35355 4.35355ZM0 4V4.5H8V4V3.5H0V4Z" fill="#DCDCDC"/></svg>
+                  <div class="home-category__view-background"></div>
+                </a>
+              </div>
+            </article>
+          </section>
+
+          <!-- Learning -->
+          <section class="home-learning u-md" data-group>
+            <div class="home-learning__contents">
+              <h2 class="home-learning__contents-title" data-split-target>Avantages</h2>
+              <p class="home-learning__contents-en" data-split-target>Avec l'ensemble de nos gammes, nous avons perfectionné l'art de concevoir des food trucks de grande qualité. Chaque véhicule est une prouesse de design architectural, d'ergonomie et d'expérience culinaire.</p>
+              <p class="home-learning__contents-ja">Nous garantissons des véhicules hygiéniques à la pointe, parfaits pour les chefs cuisiniers. La qualité est notre force et propulse votre activité.</p>
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="home-footer">
+            <a href="creative/index.html" class="home-footer__next u-md">
+              <p class="home-footer__next-text" data-group data-split-target>Créer votre devis en cochant des options</p>
+              <picture>
+                <img src="images/pied lariya.jpeg" alt="pied lariya" width="1440" height="375" loading="lazy">
+              </picture>
+              <div class="home-footer__next-filter"></div>
+            </a>
+          </footer>
+
+        </div>
+      </main>
+    </div>
+  </div><!-- /barba container -->
+
+  <!-- Menu toggle script (léger, sans dépendance) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('menu-btn');
+      const menu = document.getElementById('site-menu');
+      if (menuBtn && menu) {
+        menuBtn.addEventListener('click', function() {
+          const isOpen = menuBtn.classList.toggle('is-open');
+          menu.classList.toggle('is-open', isOpen);
+          menuBtn.setAttribute('aria-label', isOpen ? 'menu close' : 'menu open');
+          menu.setAttribute('aria-hidden', String(!isOpen));
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
